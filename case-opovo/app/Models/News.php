@@ -6,17 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    protected $table = 'news_type';
+    protected $table = 'news';
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['title', 'description', 'content', 'thumbnail'];
+    protected $fillable = ['journalist_id', 'news_type_id', 'title', 'description', 'content', 'thumbnail'];
 
-    public function journalist() {
-        return $this->hasOne(Journalist::class);
+    protected $casts = [
+        'news_type_id' => 'integer'
+    ];
+
+    public function journalist()
+    {
+        return $this->belongsOne(Journalist::class);
     }
 
-    public function newsType() {
-        return $this->hasOne(NewsType::class);
+    public function newsType()
+    {
+        return $this->belongsOne(NewsType::class);
     }
 }
