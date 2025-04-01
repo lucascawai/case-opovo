@@ -12,7 +12,7 @@ class Journalist extends Authenticatable implements JWTSubject
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['first_name', 'last_name', 'email'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'password'];
 
     protected $hidden = ['password'];
 
@@ -24,5 +24,15 @@ class Journalist extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
+
+    public function newsType()
+    {
+        return $this->hasMany(NewsType::class);
     }
 }
