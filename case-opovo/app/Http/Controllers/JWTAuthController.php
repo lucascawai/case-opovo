@@ -65,7 +65,7 @@ class JWTAuthController extends Controller
     {
         try {
             if (! $journalist = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['error' => 'User not found'], 404);
+                return response()->json(['error' => 'Journalist not found'], 404);
             }
         } catch (JWTException $e) {
             return response()->json(['error' => 'Invalid token'], 400);
