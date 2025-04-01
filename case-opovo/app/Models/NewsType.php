@@ -10,9 +10,15 @@ class NewsType extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['journalist_id', 'name'];
 
-    public function journalist() {
-        return $this->hasOne(Journalist::class);
+    public function journalist()
+    {
+        return $this->belongsOne(Journalist::class);
+    }
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
     }
 }
