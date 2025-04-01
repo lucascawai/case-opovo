@@ -2,21 +2,30 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    protected $table = 'news_type';
+    use HasFactory;
+
+    protected $table = 'news';
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['title', 'description', 'content', 'thumbnail'];
+    protected $fillable = ['journalist_id', 'news_type_id', 'title', 'description', 'content', 'thumbnail'];
 
-    public function journalist() {
-        return $this->hasOne(Journalist::class);
+    protected $casts = [
+        'news_type_id' => 'integer'
+    ];
+
+    public function journalist()
+    {
+        return $this->belongsTo(Journalist::class);
     }
 
-    public function newsType() {
-        return $this->hasOne(NewsType::class);
+    public function newsType()
+    {
+        return $this->belongsTo(NewsType::class);
     }
 }
