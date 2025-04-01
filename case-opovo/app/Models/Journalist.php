@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Journalist extends Authenticatable implements JWTSubject
 {
+    use HasFactory;
+
     protected $table = 'journalists';
 
     protected $primaryKey = 'id';

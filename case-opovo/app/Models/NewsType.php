@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class NewsType extends Model
 {
+    use HasFactory;
+
     protected $table = 'news_type';
 
     protected $primaryKey = 'id';
@@ -14,7 +17,7 @@ class NewsType extends Model
 
     public function journalist()
     {
-        return $this->belongsOne(Journalist::class);
+        return $this->belongsTo(Journalist::class);
     }
 
     public function news()
